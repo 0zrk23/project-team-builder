@@ -20,17 +20,26 @@ describe("Employee",() => {
     test("Constructor Exemptions and Errors", () => {
         const nameless = () => new Employee();
         const idless = () => new Employee("john");
+        const numId = () => new Employee("john","h");
         const negId = () => new Employee("john",-3,"john@mail.com");
         const zeroId = () => new Employee("john",0,"john@mail.com");
         const emailless = () => new Employee("john",3);
         //check to see if all constroctor erros are thrown correctly
         expect(nameless).toThrow(new Error("Expected 'name' to be a non-empty string"));
         expect(idless).toThrow(new Error("Expected 'id' be a non-empty, negative or zero number"));
+        expect(numId).toThrow(new Error("Expected 'id' be a non-empty, negative or zero number"));
         expect(negId).toThrow(new Error("Expected 'id' be a non-empty, negative or zero number"));
         expect(zeroId).toThrow(new Error("Expected 'id' be a non-empty, negative or zero number"));
         expect(emailless).toThrow(new Error("Expected 'email' be a non-empty string"));
     });
-    test('')
+    //test class methods
+    test("Class Methods",() => {
+        const john = new Employee("john",3,"john@mail.com");
+        expect(john.getName()).toEqual("john");
+        expect(john.getId()).toEqual(3);
+        expect(john.getEmail()).toEqual("john@mail.com");
+        expect(john.getRoll()).toEqual("Employee");
+    });
 });
 
 
