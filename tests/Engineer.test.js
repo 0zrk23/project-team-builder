@@ -17,7 +17,7 @@ describe("Engineer Class", () => {
     });
     //test subclass methods
     test("Class Methods", () => {
-        const john = new Engineer("john",3,"john@mail.com","github.profile/john");
-        expect(john.getGitHub()).toEqual("github.profile/john");
+        const john = new Engineer("john",3,"john@mail.com","pedestrian20");
+        expect(john.getGitHub()).toEqual("pedestrian20");
     });
 });
