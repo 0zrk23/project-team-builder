@@ -12,7 +12,8 @@
   "license": "MIT",
   "dependencies": {
     "chalk": "5.2.0",
-    "inquirer": "8.2.2"
+    "inquirer": "8.2.2",
+    "bootstrap-icons": "1.10"
   },
   "devDependencies": {
     "jest": "^29.3.1"
