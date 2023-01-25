@@ -9,19 +9,36 @@ const inquirer = require('inquirer')
  */
 function ask(employeeType,employeeInfo, promptType){
     let divider = '';
+    let promptInfo = employeeInfo
     //checks if a new employee is being asked for, if so, create a divider
     if(employeeInfo === 'name'){
         divider = '------------------\n';
     }
+    if(employeeInfo === 'id'){
+        promptType = 'number';
+    }
+    if(employeeInfo === 'employee_info'){
+        if(employeeType === 'Manager'){
+            promptInfo = 'Office number';
+            promptType = 'number';
+        }
+        if(employeeType === 'Engineer'){
+            promptInfo = 'GitHub Username';
+        }
+        if(employeeType === 'Intern'){
+            promptInfo = 'School';
+        }
+    }
+    
     //returns an object designed to be used as a prompt for inquirer
     return {
         name: employeeInfo,
         type: 'input',
-        message: `${divider}Please enter the ${employeeType}'s ${employeeInfo}`,
+        message: `${divider}Please enter the ${employeeType}'s ${promptInfo}`,
         validate(answer){
             return new Promise((resolve,reject)=>{
                 if(!answer){
-                    reject(new Error(`Expected '${employeeInfo}' to be a non-empty ${promptType}`));
+                    reject(new Error(`Expected '${employeeInfo}' to be a non-empty string`));
                 }
                 if(promptType === 'number' && (answer <= 0 || !parseInt(answer))){
                     reject(new Error(`Expected '${employeeInfo}' to be a number greater than 0`));
@@ -38,26 +55,18 @@ function ask(employeeType,employeeInfo, promptType){
  * @returns {object} The information gatherd by inquirer
  */
 const getInfo = function (employeeType){
-    // return new Promise(functio(res,rej))
     let employeeInfo;
-    if(employeeType === 'Manager'){
-        employeeInfo = 'Office_Number';
-    }
-    if(employeeType === 'Engineer'){
-        employeeInfo = 'GitHub_username';
-    }
-    if(employeeType === 'Intern'){
-        employeeInfo = 'school';
-    }
+
+    //returns a promise from inquirer
     return inquirer.prompt([
+        //ask for the employee name
         ask(employeeType,'name'),
-        ask(employeeType,'id','number'),
+        //ask for the employee id
+        ask(employeeType,'id'),
+        //ask for the employee email
         ask(employeeType,'email'),
-        {
-            name: 'employee_info',
-            type: 'input',
-            message: `Please enter the ${employeeType}'s ${employeeInfo}`
-        }
+        //ask for the em
+        ask(employeeType, 'employee_info')
     ])
 }
 

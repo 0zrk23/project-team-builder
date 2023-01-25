@@ -14,6 +14,7 @@ const dreamTeam = [
     new Intern("Throbby",7,"throbby@hogwartsgym.com","School of the Free (Flexers)")
 ];
 
+//writes a file for testing purposes
 fs.writeFile("./db/testGroup.json",JSON.stringify(dreamTeam), err =>
     err ? 
     console.log(err)

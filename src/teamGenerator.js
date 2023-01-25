@@ -30,7 +30,7 @@ async function more(employeeType){
     while(!done){
         employees.push(await empGen(employeeType));
         //calls function to prompt user for more of the type of employee
-        done = await askForMore();
+        done = await askForMore(employeeType);
     }
     return employees;
 }
