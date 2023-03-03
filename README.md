@@ -14,7 +14,7 @@ Welcome to Project Team Builder! Project Team Builder is a CLI application desig
 
 ## Usage
 
-
+[how-to-project-team-builder.webm](https://user-images.githubusercontent.com/115580058/222594235-2eeac614-fad0-4211-b0b8-45c23250f4f9.webm)
 
 To use the appliation, you start by opening a terminal in the directory of the application. Type in "npm start" and the application will give you a series of prompts which will guide you through creating a team.
 
